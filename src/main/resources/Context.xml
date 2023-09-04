@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <context:property-placeholder location="classpath:musicPlayers.properties"/>
+    <bean id="spamMusic"
+          class="khamit.RockMusic">
+    </bean>
+    <bean id="spamMusic2"
+          class="khamit.ClassicMusic">
+    </bean>
+    <bean id="playMusic"
+          class="khamit.PlayMusic">
+        <property name="music">
+        <util:list>
+            <ref bean="spamMusic"/>
+            <ref bean="spamMusic2"/>
+        </util:list>
+        </property>
+        <property name="name" value="${PlayMusic.name}"/>
+    </bean>
+    <bean id="playMusic2"
+          class="khamit.PlayMusic">
+        <constructor-arg>
+            <list>
+                <ref bean="spamMusic"/>
+                <ref bean="spamMusic2"/>
+            </list>
+        </constructor-arg>
+        <property name="name" value="${PlayMusic.name}"/>
+    </bean>
+
+
+</beans>
